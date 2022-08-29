@@ -37,7 +37,7 @@ from tensorflow.keras.optimizers import Adam
 
 
 
-# %% first working model 
+# %% working model 
 # Time series prediction model
 
 def dnn_keras_tspred_model():
@@ -138,40 +138,6 @@ plt.xlim(freq[L[0]],freq[L[-1]])
 plt.legend()
 plt.show()
 
-# indicies = PSD > 50 # threshold
-# PSDclean = PSD * indicies
-# fhatt = indicies *fhat
-# ffilt = np.fft.ifft(fhatt)
-
-# fig,axs = plt.subplots(3,1)
-# plt.sca(axs[0])
-# plt.plot(X_train,y_test, color='c', label='Noisy')
-# plt.plot(X_train,y_train,  color='k', label='Clean')
-# plt.xlim(X_train[0],X_train[-1])
-# plt.legend()
-
-# plt.sca(axs[1])
-# plt.plot(X_train, ffilt)
-# plt.xlim(X_train[0],X_train[-1])
-# plt.legend()
-
-# plt.sca(axs[2])
-# plt.plot(freq[L], PSD[L])# color='c', Label='Noisy')
-# plt.plot(freq[L], PSDclean[L])
-# plt.xlim(freq[L[0]],freq[L[-1]])
-# plt.legend()
-
-#plt.show()
-
-# fig, [ax1, ax2] = plt.subplots(nrows=2, ncols=1)
-# ax1.plot(xf, np.abs(yf), '.-')
-# ax2.plot(xf, np.abs(yf2), '.-')
-# ax1.set_xlabel('Freq(Hz)')
-# ax2.set_xlabel('Freq(Hz)')
-# ax1.set_ylabel('Amplitude(desired)')
-# ax2.set_ylabel('Amplitude(test)')
-# plt.show()
-
 #%% (primary example) prepare the train_data and train_labels 
 dnn_numinputs = 64
 num_train_batch = 0
@@ -271,70 +237,6 @@ plt.xlabel('Frequency')
 plt.ylabel('Amplitude')
 plt.legend(loc="lower left")
 plt.show();
-
-#%%
-# # # %% (second example using LSTM)
-# # # %% [code]
-# # from keras.preprocessing.sequence import TimeseriesGenerator
-
-# # look_back  = 20
-
-# # train_generator = TimeseriesGenerator(train_series, train_series,
-# #                                       length        = look_back, 
-# #                                       sampling_rate = 1,
-# #                                       stride        = 1,
-# #                                       batch_size    = 10)
-
-# # test_generator = TimeseriesGenerator(test_series, test_series,
-# #                                       length        = look_back, 
-# #                                       sampling_rate = 1,
-# #                                       stride        = 1,
-# #                                       batch_size    = 10)
-
-# # # %% [code] {"_kg_hide-output":true}
-# # from keras.layers import Dense
-# # from keras.layers import LSTM
-
-# # n_neurons  = 64
-# # model = Sequential()
-# # model.add(LSTM(n_neurons, input_shape=(look_back, n_features)))
-# # model.add(Dense(1))
-# # model.compile(optimizer='adam', loss='mse')
-
-# # filepath= "C:\\Users\\Habsman\\Desktop\\codes\\recursive\\saved_models_2"
-# # cp1 = ModelCheckpoint(filepath, save_best_only=True)
-
-# # history = model.fit(train_generator, epochs=100, validation_data=(test_generator),  callbacks=[cp1]) 
-# # #verbose=0)
-# # model.load_weights("C:\\Users\\Habsman\\Desktop\\codes\\recursive\\saved_models_2")
-
-# # # %% plot the training and validation curves
-# # loss=history.history['loss']
-# # val_loss=history.history['val_loss']
-# # epochs=range(1,len(loss)+1)
-# # plt.figure()
-# # plt.plot(epochs, loss,'b', label='Training loss',linewidth=2)
-# # plt.plot(epochs, val_loss,'r', label='Validation loss',linewidth=2)
-# # plt.title('Training and validation losses')
-# # plt.xlabel('Epochs')
-# # plt.ylabel('Loss')
-# # plt.xscale('log')
-# # plt.yscale('log')
-# # plt.legend()
-# # plt.savefig('validation_and_loss.png')
-# # plt.show()
-
-# # # %% [code] Prediction
-# # test_predictions  = model.predict(test_generator)
-
-# # # %% [code] {"_kg_hide-input":true}
-# # x = np.arange(700, (num_train_data+num_test_data)/5, timestep);
-# # fig, ax = plt.subplots(1, 1, figsize=(15, 5))
-# # ax.plot(X_train[0:300],y_train[0:300], lw=2, label='train data')
-# # ax.plot(X_train[300:500],y_test[300:500], lw=3, c='y', label='test data')
-# # ax.plot(X_train[500:700],test_predictions[500:700], lw=3, c='r',linestyle = ':', label='predictions')
-# # ax.legend(loc="lower left")
-# # plt.show();
 
 
 
